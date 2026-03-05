@@ -1,0 +1,11 @@
+LICENCE
+setup.py
+src/medical_cost_prediction.egg-info/PKG-INFO
+src/medical_cost_prediction.egg-info/SOURCES.txt
+src/medical_cost_prediction.egg-info/dependency_links.txt
+src/medical_cost_prediction.egg-info/requires.txt
+src/medical_cost_prediction.egg-info/top_level.txt
+src/modeling/__init__.py
+src/modeling/predict.py
+src/modeling/train.py
+src/services/__init__.py
