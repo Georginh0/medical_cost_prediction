@@ -7,7 +7,7 @@ Usage:
     conda activate medical_cost
     python run_pipeline.py
 
-Template: Georginh0/house_price_prediction
+
 """
 
 import logging

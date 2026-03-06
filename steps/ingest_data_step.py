@@ -6,7 +6,6 @@ ZenML Step 1 of 6 — Data Ingestion
 Loads insurance.csv, validates the schema, checks value ranges,
 and removes the single duplicate row identified in EDA.
 
-Template: Georginh0/house_price_prediction
 """
 
 import logging

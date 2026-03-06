@@ -8,7 +8,7 @@ Stratification is critical because smoker status drives ~79% of
 the variance in charges — an imbalanced split would skew both
 training and evaluation.
 
-Template: Georginh0/house_price_prediction
+
 """
 
 import logging

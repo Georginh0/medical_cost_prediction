@@ -11,7 +11,7 @@ Generates final diagnostic artifacts:
 
 All metrics are reported in original USD scale (expm1 inverse).
 
-Template: Georginh0/house_price_prediction
+
 """
 
 import json

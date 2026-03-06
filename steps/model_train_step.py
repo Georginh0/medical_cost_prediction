@@ -13,7 +13,7 @@ Models compared:
   LinearRegression, Ridge, Lasso,
   RandomForest, GradientBoosting, KNN
 
-Template: Georginh0/house_price_prediction
+
 """
 
 import json
