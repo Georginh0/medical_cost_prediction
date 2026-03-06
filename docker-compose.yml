@@ -1,0 +1,49 @@
+# ═══════════════════════════════════════════════════════════════════
+# docker-compose.yml — Medical Cost Prediction
+# ═══════════════════════════════════════════════════════════════════
+# Starts two services:
+#   api     → http://localhost:8000  (prediction web UI)
+#   mlflow  → http://localhost:5000  (experiment tracker)
+#
+# Usage:
+#   docker compose up --build       # build and start both
+#   docker compose up               # start (no rebuild)
+#   docker compose down             # stop
+# ═══════════════════════════════════════════════════════════════════
+
+version: "3.9"
+
+services:
+
+  # ── Prediction API ───────────────────────────────────────────────
+  api:
+    build: .
+    container_name: medical_cost_api
+    ports:
+      - "8000:8000"
+    environment:
+      - PYTHONPATH=/app
+    volumes:
+      # Mount trained models so container always has latest
+      - ./models:/app/models:ro
+      # Mount extracted_data for prediction logging
+      - ./extracted_data:/app/extracted_data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8000/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+  # ── MLflow UI ────────────────────────────────────────────────────
+  mlflow:
+    image: python:3.10-slim
+    container_name: medical_cost_mlflow
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./mlruns:/mlruns
+    command: >
+      sh -c "pip install mlflow --quiet &&
+             mlflow ui --host 0.0.0.0 --port 5000 --backend-store-uri /mlruns"
+    restart: unless-stopped
