@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/georgensamuel/Documents/Machine_Learning_Projects/medical_cost_prediction/mlruns/512015038739729627/1812a8a4b39c4a18b9cbde08c901ac5a/artifacts
+end_time: 1772785632961
+entry_point_name: ''
+experiment_id: '512015038739729627'
+lifecycle_stage: active
+run_id: 1812a8a4b39c4a18b9cbde08c901ac5a
+run_name: cv_RandomForest
+run_uuid: 1812a8a4b39c4a18b9cbde08c901ac5a
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772785632894
+status: 3
+tags: []
+user_id: georgensamuel

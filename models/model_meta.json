@@ -1,0 +1,13 @@
+{
+  "best_model": "Lasso",
+  "best_params": {
+    "alpha": 0.0001
+  },
+  "cv_r2": 0.8051,
+  "metrics": {
+    "RMSE": 4439.62,
+    "MAE": 2358.91,
+    "MAPE": 17.61,
+    "R2": 0.8633
+  }
+}

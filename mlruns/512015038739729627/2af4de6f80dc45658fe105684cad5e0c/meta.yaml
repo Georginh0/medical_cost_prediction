@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/georgensamuel/Documents/Machine_Learning_Projects/medical_cost_prediction/mlruns/512015038739729627/2af4de6f80dc45658fe105684cad5e0c/artifacts
+end_time: 1772785626370
+entry_point_name: ''
+experiment_id: '512015038739729627'
+lifecycle_stage: active
+run_id: 2af4de6f80dc45658fe105684cad5e0c
+run_name: cv_LinearRegression
+run_uuid: 2af4de6f80dc45658fe105684cad5e0c
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772785626347
+status: 3
+tags: []
+user_id: georgensamuel

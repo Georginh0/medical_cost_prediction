@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/georgensamuel/Documents/Machine_Learning_Projects/medical_cost_prediction/mlruns/512015038739729627/e1050f81a57a4682b714d279da3798f7/artifacts
+end_time: 1772785626768
+entry_point_name: ''
+experiment_id: '512015038739729627'
+lifecycle_stage: active
+run_id: e1050f81a57a4682b714d279da3798f7
+run_name: cv_Lasso
+run_uuid: e1050f81a57a4682b714d279da3798f7
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772785626737
+status: 3
+tags: []
+user_id: georgensamuel

@@ -1,0 +1,7 @@
+,cv_r2_mean,cv_r2_std,cv_rmse_mean,cv_mae_mean
+Lasso,0.8051,0.0543,0.4009,0.2218
+LinearRegression,0.8048,0.0559,0.4011,0.2229
+Ridge,0.8048,0.0549,0.4012,0.223
+GradientBoosting,0.8026,0.0637,0.4024,0.2189
+RandomForest,0.7874,0.0758,0.4161,0.2227
+KNN,0.7652,0.0611,0.4397,0.261

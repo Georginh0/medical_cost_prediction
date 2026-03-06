@@ -29,7 +29,7 @@ Creates domain-specific features identified in EDA:
 No sklearn fitting occurs here — safe to apply identically to
 both train and test without data leakage.
 
-Template: Georginh0/house_price_prediction
+
 """
 
 import logging

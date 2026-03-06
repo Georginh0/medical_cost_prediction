@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/georgensamuel/Documents/Machine_Learning_Projects/medical_cost_prediction/mlruns/512015038739729627/19f6d16641e04649b69c49067b78de14/artifacts
+end_time: 1772785626548
+entry_point_name: ''
+experiment_id: '512015038739729627'
+lifecycle_stage: active
+run_id: 19f6d16641e04649b69c49067b78de14
+run_name: cv_Ridge
+run_uuid: 19f6d16641e04649b69c49067b78de14
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772785626517
+status: 3
+tags: []
+user_id: georgensamuel

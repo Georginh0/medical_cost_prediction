@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MediCost Predictor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&display=swap');
+  :root{--ink:#0a0e1a;--green:#1a6b4a;--gold:#e8b84b;--muted:#6b7280;--paper:#f5f2eb;--white:#fff;--red:#c0392b;--r:12px}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+  header{background:var(--ink);color:#fff;padding:1.4rem 2rem;display:flex;align-items:center;justify-content:space-between}
+  header h1{font-family:'Syne',sans-serif;font-size:1.5rem;font-weight:800;letter-spacing:-.02em}
+  header h1 span{color:var(--gold)}
+  .pill{background:var(--green);color:#fff;font-size:.7rem;font-weight:700;padding:4px 12px;border-radius:20px;letter-spacing:.05em;text-transform:uppercase}
+  main{max-width:960px;margin:0 auto;padding:2.5rem 1.5rem;display:grid;grid-template-columns:1fr 1fr;gap:2rem}
+  @media(max-width:680px){main{grid-template-columns:1fr}}
+  .card{background:var(--white);border-radius:var(--r);padding:2rem;box-shadow:0 2px 16px rgba(0,0,0,.06)}
+  .card h2{font-family:'Syne',sans-serif;font-size:1rem;font-weight:700;margin-bottom:1.4rem;display:flex;align-items:center;gap:8px}
+  .card h2::before{content:'';width:4px;height:1.1em;background:var(--green);border-radius:2px;display:block}
+  .fg{display:grid;grid-template-columns:1fr 1fr;gap:.9rem}
+  .fgi{display:flex;flex-direction:column;gap:5px}
+  .fgi.full{grid-column:1/-1}
+  label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+  input,select{border:1.5px solid #e5e7eb;border-radius:8px;padding:.55rem .85rem;font-size:.93rem;font-family:'DM Sans',sans-serif;background:#fafafa;color:var(--ink);outline:none;transition:border-color .15s,box-shadow .15s}
+  input:focus,select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(26,107,74,.12);background:#fff}
+  .pills{display:flex;gap:8px;flex-wrap:wrap}
+  .pills input[type=radio]{display:none}
+  .pills label{text-transform:none;letter-spacing:0;font-size:.85rem;font-weight:500;padding:6px 15px;border-radius:20px;border:1.5px solid #e5e7eb;cursor:pointer;color:var(--muted);background:#fff;transition:all .15s}
+  .pills input[type=radio]:checked+label{background:var(--ink);border-color:var(--ink);color:#fff}
+  .btn{margin-top:1.4rem;width:100%;background:var(--green);color:#fff;border:none;border-radius:10px;padding:.85rem;font-family:'Syne',sans-serif;font-size:.95rem;font-weight:700;cursor:pointer;letter-spacing:.02em;transition:background .15s,transform .1s}
+  .btn:hover{background:#145a3e}
+  .btn:active{transform:scale(.98)}
+  .btn:disabled{background:#9ca3af;cursor:not-allowed}
+  .err{background:#fdd;color:var(--red);border-radius:8px;padding:9px 13px;font-size:.83rem;margin-top:9px;display:none}
+  .metric{background:var(--paper);border-radius:var(--r);padding:1.4rem;text-align:center;border:1.5px solid #e9e5dc;margin-bottom:1rem}
+  .metric .lbl{font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:7px}
+  .metric .val{font-family:'Syne',sans-serif;font-size:2.2rem;font-weight:800;color:var(--green);line-height:1}
+  .metric .sub{font-size:.78rem;color:var(--muted);margin-top:5px}
+  .gauge-track{height:10px;border-radius:5px;background:linear-gradient(to right,#27ae60,#f1c40f,#e67e22,#c0392b);position:relative;margin:8px 0}
+  .needle{position:absolute;top:-4px;width:18px;height:18px;border-radius:50%;background:var(--ink);border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.3);transform:translateX(-50%);transition:left .6s cubic-bezier(.34,1.56,.64,1);left:50%}
+  .glabels{display:flex;justify-content:space-between;font-size:.65rem;color:var(--muted)}
+  .rbadge{display:inline-block;padding:5px 14px;border-radius:20px;font-weight:700;font-size:.82rem;margin-top:6px}
+  .Low{background:#d4edda;color:#155724}.Moderate{background:#fff3cd;color:#856404}
+  .High{background:#fde8d8;color:#b45309}.VeryHigh{background:#fdd;color:var(--red)}
+  .bkd table{width:100%;border-collapse:collapse;font-size:.83rem}
+  .bkd td{padding:7px 5px;border-bottom:1px solid #f0ede6}
+  .bkd td:last-child{text-align:right;font-weight:600;color:var(--green)}
+  .spin{width:20px;height:20px;border:3px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:sp .7s linear infinite;display:inline-block}
+  @keyframes sp{to{transform:rotate(360deg)}}
+  .ph{text-align:center;color:var(--muted);padding:2.5rem 1rem;font-size:.88rem;line-height:1.7}
+  .ph .ic{font-size:2.2rem;display:block;margin-bottom:10px}
+</style>
+</head>
+<body>
+<header>
+  <h1>Medi<span>Cost</span></h1>
+  <span class="pill">ML Powered</span>
+</header>
+<main>
+  <div class="card">
+    <h2>Patient Profile</h2>
+    <div class="fg">
+      <div class="fgi"><label>Age</label><input type="number" id="age" min="18" max="64" value="35"></div>
+      <div class="fgi"><label>BMI</label><input type="number" id="bmi" min="10" max="60" step="0.1" value="28.5"></div>
+      <div class="fgi"><label>Children / Dependants</label><input type="number" id="children" min="0" max="5" value="1"></div>
+      <div class="fgi"><label>Region</label>
+        <select id="region">
+          <option value="northwest">Northwest</option>
+          <option value="northeast">Northeast</option>
+          <option value="southeast">Southeast</option>
+          <option value="southwest">Southwest</option>
+        </select>
+      </div>
+      <div class="fgi full"><label>Sex</label>
+        <div class="pills">
+          <input type="radio" id="sm" name="sex" value="male" checked><label for="sm">Male</label>
+          <input type="radio" id="sf" name="sex" value="female"><label for="sf">Female</label>
+        </div>
+      </div>
+      <div class="fgi full"><label>Smoker</label>
+        <div class="pills">
+          <input type="radio" id="sno" name="smoker" value="no" checked><label for="sno">Non-Smoker</label>
+          <input type="radio" id="syes" name="smoker" value="yes"><label for="syes">Smoker</label>
+        </div>
+      </div>
+    </div>
+    <div id="err" class="err"></div>
+    <button class="btn" id="btn" onclick="go()">Predict Insurance Cost →</button>
+  </div>
+
+  <div class="card">
+    <h2>Prediction Result</h2>
+    <div id="result">
+      <div class="ph"><span class="ic">🏥</span>Fill in the patient profile and<br>click <strong>Predict Insurance Cost</strong></div>
+    </div>
+  </div>
+</main>
+
+<script>
+const gp={'Low':10,'Moderate':38,'High':65,'Very High':88};
+const fmt=n=>'$'+n.toLocaleString('en-US',{minimumFractionDigits:2,maximumFractionDigits:2});
+
+function fallback(d){
+  const p=3000+d.age*120+Math.max(0,(d.bmi-25)*200)+(d.smoker==='yes'?15000:0)+d.children*500;
+  const rn=(d.smoker==='yes'?1:0)+(d.bmi>=30?1:0)+(d.age>=50?1:0);
+  const rl=['Low','Moderate','High','Very High'][Math.min(rn,3)];
+  return{predicted_charges:Math.round(p*100)/100,confidence_range:[Math.round(p*.85*100)/100,Math.round(p*1.15*100)/100],risk_level:rl,model_used:'client-estimate'};
+}
+
+async function go(){
+  const btn=document.getElementById('btn'),err=document.getElementById('err');
+  err.style.display='none';
+  const age=+document.getElementById('age').value,bmi=+document.getElementById('bmi').value;
+  const children=+document.getElementById('children').value;
+  const region=document.getElementById('region').value;
+  const sex=document.querySelector('input[name=sex]:checked').value;
+  const smoker=document.querySelector('input[name=smoker]:checked').value;
+  if(isNaN(age)||age<18||age>64){show('Age must be 18–64');return}
+  if(isNaN(bmi)||bmi<10||bmi>60){show('BMI must be 10–60');return}
+  btn.disabled=true;btn.innerHTML='<span class="spin"></span>';
+  const payload={age,sex,bmi,children,smoker,region};
+  let r;
+  try{
+    const res=await fetch('/predict',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+    if(!res.ok)throw new Error();
+    r=await res.json();
+  }catch{r=fallback(payload);}
+  btn.disabled=false;btn.innerHTML='Predict Insurance Cost →';
+  render(r,payload);
+}
+function show(m){const e=document.getElementById('err');e.textContent=m;e.style.display='block';}
+
+function render(r,d){
+  const rl=r.risk_level.replace(/ \(.*\)/,'');
+  const rc=rl.replace(' ','');
+  document.getElementById('result').innerHTML=`
+    <div class="metric">
+      <div class="lbl">Estimated Annual Charges</div>
+      <div class="val">${fmt(r.predicted_charges)}</div>
+      <div class="sub">Range: ${fmt(r.confidence_range[0])} – ${fmt(r.confidence_range[1])}</div>
+    </div>
+    <div style="margin-bottom:1rem">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:4px">
+        <span style="font-size:.7rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.06em">Risk Level</span>
+        <span class="rbadge ${rc}">${rl}</span>
+      </div>
+      <div class="gauge-track"><div class="needle" id="nd"></div></div>
+      <div class="glabels"><span>Low</span><span>Moderate</span><span>High</span><span>Very High</span></div>
+    </div>
+    <div class="bkd"><table>
+      <tr><td>Age</td><td>${d.age} yrs</td></tr>
+      <tr><td>BMI</td><td>${d.bmi}${d.bmi>=30?' <span style="color:#e67e22;font-size:.72rem">▲ Obese</span>':''}</td></tr>
+      <tr><td>Smoker</td><td>${d.smoker==='yes'?'<span style="color:var(--red)">Yes ⚠️</span>':'No ✓'}</td></tr>
+      <tr><td>Children</td><td>${d.children}</td></tr>
+      <tr><td>Region</td><td style="text-transform:capitalize">${d.region}</td></tr>
+      <tr><td>Model</td><td style="font-size:.75rem;color:var(--muted)">${r.model_used}</td></tr>
+    </table></div>`;
+  setTimeout(()=>{document.getElementById('nd').style.left=(gp[rl]||50)+'%'},80);
+}
+</script>
+</body>
+</html>

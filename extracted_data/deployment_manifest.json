@@ -1,0 +1,14 @@
+{
+  "status": "deployed",
+  "model": "Lasso",
+  "test_r2": 0.8633,
+  "artifacts": [
+    "models/best_model.pkl",
+    "models/scaler.pkl",
+    "models/pca.pkl",
+    "models/feature_names.pkl",
+    "models/model_meta.json"
+  ],
+  "serve_cmd": "uvicorn app.server:app --reload --port 8000",
+  "mlflow_ui": "mlflow ui --port 5000"
+}

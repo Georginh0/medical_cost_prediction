@@ -1,0 +1,15 @@
+artifact_uri: file:///Users/georgensamuel/Documents/Machine_Learning_Projects/medical_cost_prediction/mlruns/512015038739729627/4bae62d7f84443348b1741b347491dc2/artifacts
+end_time: 1772785637208
+entry_point_name: ''
+experiment_id: '512015038739729627'
+lifecycle_stage: active
+run_id: 4bae62d7f84443348b1741b347491dc2
+run_name: cv_GradientBoosting
+run_uuid: 4bae62d7f84443348b1741b347491dc2
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1772785637169
+status: 3
+tags: []
+user_id: georgensamuel
